@@ -124,7 +124,7 @@ def main():
         voice_gender = st.selectbox(
             "Voice Gender",
             options = ['Girl', 'Boy'],
-            index = 0,
+            index = 1,
             help = "Choose Voice Type"
         )
 
