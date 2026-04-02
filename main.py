@@ -61,12 +61,11 @@ def get_ai_response(messages):
         response = client.chat.completions.create(
             model = MODEL,
             messages = messages,
-            max_tokens = 100,
             temperature = 0.7
         )
 
         # out of many responses by llm we are taking 0th response
-        result = response.choices[0].message.content.strip()
+        result = response.choices[0].message.content
         return result.strip() if result else "Sorry, I couldn't generate a response."
     except Exception as e:
         return f"Error getting AI response: {e}"
@@ -89,10 +88,10 @@ def speak(text, voice_gender = "Girl"):
             else:
                 # set the girl voice
                 for voice in voices:
-                    if "male" in voice.name.lower() or "zira" in voice.name.lower():
+                    if "female" in voice.name.lower() or "zira" in voice.name.lower():
                         engine.setProperty("voice", voice.id)
                         break
-        engine.setProperty("rate", 200)  # speed of speech
+        engine.setProperty("rate", 150)  # speed of speech
         engine.setProperty("volume", 0.8)    # volume of speech
         engine.say(text)
         engine.runAndWait()
@@ -124,7 +123,7 @@ def main():
             "Voice Gender",
             options=["Girl", "Boy"],
             index = 0,
-            help = "Choosbe Voice Type"
+            help = "Choose Voice Type"
         )
 
         if st.button("Start Voice Input", type = "primary", use_container_width = True):
@@ -176,7 +175,7 @@ def main():
         if st.button("Clear Chat History", type = "secondary", use_container_width = True):
             st.session_state.messages = []
             st.session_state.chat_history = [
-                {"role": "system", "content": "You are a helpful voice assistant. Reply just one line"}
+                {"role": "system", "content": "You are a helpful voice assistant. Reply just two line"}
             ]
             st.rerun()
     
