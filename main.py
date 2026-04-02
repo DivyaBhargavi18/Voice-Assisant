@@ -178,7 +178,7 @@ def main():
         if st.button("Clear Chat", use_container_width=True):
             st.session_state.messages = []
             st.session_state.chat_history = [
-            {"role": "system", "content" : "You are a helpful voice assitant. Reply just one line"}
+            {"role": "system", "content" : "You are a helpful voice assitant. Reply just two line"}
         ]
             st.rerun()
 
